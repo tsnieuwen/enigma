@@ -25,5 +25,5 @@ class EnigmaTest < Minitest::Test
     assert_equal 48, enigma.c_key
     assert_equal 87, enigma.d_key
   end
-  
+
 end
