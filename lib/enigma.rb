@@ -170,11 +170,11 @@ class Enigma
     @character_set = ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = ((0..99999).to_a.sample).to_s.rjust(5, "0"), date = ((Time.now.to_s.split("")[8..9]) + (Time.now.to_s.split("")[5..6]) + (Time.now.to_s.split("")[2..3])).join(""))
     @key_to_integer = key.to_i
     @date = date.to_i
     @message = message
-    encryption_output = {encryption: encrypted_message, key: key, date: date}
+    @encryption_output = {encryption: encrypted_message, key: key, date: date}
   end
 
   def a_key
@@ -325,7 +325,7 @@ class Enigma
     encrypted_characters.join("")
   end
 
-  def decrypt(ciphertext, key, date)
+  def decrypt(ciphertext, key, date = ((Time.now.to_s.split("")[8..9]) + (Time.now.to_s.split("")[5..6]) + (Time.now.to_s.split("")[2..3])).join(""))
     @key_to_integer = key.to_i
     @date = date.to_i
     @message = ciphertext

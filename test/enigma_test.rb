@@ -201,11 +201,9 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.decrypted_message
   end
 
-  # def test_decrypt_shift
-  #   enigma = Enigma.new
-  #   enigma.decrypt("dvwysjak pwdfjii", "12487", "120395")
-  #   expected = [12, 24, 26, 13, 0, 12, 4, 26, 8, 18, 26, 19, 14, 12, 12, 24]
-  #   assert_equal expected, enigma.decrypt_shift
-  # end
+  def test_encrypt_no_given_key
+    enigma = Enigma.new
+    require "pry"; binding.pry
+  end
 
 end
