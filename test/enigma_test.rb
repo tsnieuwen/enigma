@@ -135,7 +135,7 @@ class EnigmaTest < Minitest::Test
     assert_equal 92, enigma.d_shift
   end
 
-  def test_encrypted_message
+  def test_encrypt
     enigma = Enigma.new
     enigma.encrypt("my name is tommy", "12487", "120395")
 
@@ -161,7 +161,7 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.d_shift_indices
 
     expected = [30, 48, 76, 105, 18, 36, 54, 118, 26, 42, 76, 111, 32, 36, 62, 116]
-    assert_equal expected, enigma.shifted_message_indices
+    assert_equal expected, enigma.shifted_message_indices_encrypt
 
     expected = [3, 21, 22, 24, 18, 9, 0, 10, 26, 15, 22, 3, 5, 9, 8, 8]
     assert_equal expected, enigma.encrypted_indices
@@ -172,5 +172,40 @@ class EnigmaTest < Minitest::Test
     expected = "dvwysjak pwdfjii"
     assert_equal expected, enigma.encrypted_message
   end
+
+  def test_decrypt
+    enigma = Enigma.new
+    expected = {decryption: "my name is tommy",
+                key: "12487",
+                date: "120395"
+                }
+    assert_equal expected, enigma.decrypt("dvwysjak pwdfjii", "12487", "120395")
+  end
+
+  def test_decrypt_split_text
+    enigma = Enigma.new
+    enigma.decrypt("dvwysjak pwdfjii", "12487", "120395")
+    expected = [3, 21, 22, 24, 18, 9, 0, 10, 26, 15, 22, 3, 5, 9, 8, 8]
+    assert_equal expected, enigma.message_index
+    assert_equal 9, enigma.a_shift_decrypt
+    assert_equal 3, enigma.b_shift_decrypt
+    assert_equal 4, enigma.c_shift_decrypt
+    assert_equal 16, enigma.d_shift_decrypt
+    expected = [12, 24, 26, 40, 27, 12, 4, 26, 35, 18, 26, 19, 14, 12, 12, 24]
+    assert_equal expected, enigma.shifted_message_indices_decrypt
+    expected = [12, 24, 26, 13, 0, 12, 4, 26, 8, 18, 26, 19, 14, 12, 12, 24]
+    assert_equal expected, enigma.decrypted_indices
+    expected = ["m", "y", " ", "n", "a", "m", "e", " ", "i", "s", " ", "t", "o", "m", "m", "y"]
+    assert_equal expected, enigma.decrypted_characters
+    expected = "my name is tommy"
+    assert_equal expected, enigma.decrypted_message
+  end
+
+  # def test_decrypt_shift
+  #   enigma = Enigma.new
+  #   enigma.decrypt("dvwysjak pwdfjii", "12487", "120395")
+  #   expected = [12, 24, 26, 13, 0, 12, 4, 26, 8, 18, 26, 19, 14, 12, 12, 24]
+  #   assert_equal expected, enigma.decrypt_shift
+  # end
 
 end

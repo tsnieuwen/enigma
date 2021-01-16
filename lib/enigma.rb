@@ -287,7 +287,7 @@ class Enigma
     x
   end
 
-  def shifted_message_indices
+  def shifted_message_indices_encrypt
     i = -1
     message_index.map do |element|
       i += 1
@@ -304,7 +304,7 @@ class Enigma
   end
 
   def encrypted_indices
-    shifted_message_indices.map do |index|
+    shifted_message_indices_encrypt.map do |index|
       index % 27
     end
   end
@@ -324,5 +324,69 @@ class Enigma
   def encrypted_message
     encrypted_characters.join("")
   end
+
+  def decrypt(ciphertext, key, date)
+    @key_to_integer = key.to_i
+    @date = date.to_i
+    @message = ciphertext
+    encryption_output = {decryption: decrypted_message, key: key, date: date}
+  end
+
+  def a_shift_decrypt
+    27 - (a_shift % 27)
+  end
+
+  def b_shift_decrypt
+    27 - (b_shift % 27)
+  end
+
+  def c_shift_decrypt
+    27 - (c_shift % 27)
+  end
+
+  def d_shift_decrypt
+    27 - (d_shift % 27)
+  end
+
+  def shifted_message_indices_decrypt
+    i = -1
+    message_index.map do |element|
+      i += 1
+      if a_shift_indices.include?(i)
+        element + a_shift_decrypt
+      elsif b_shift_indices.include?(i)
+        element + b_shift_decrypt
+      elsif c_shift_indices.include?(i)
+        element + c_shift_decrypt
+      elsif d_shift_indices.include?(i)
+        element + d_shift_decrypt
+      end
+    end
+  end
+
+  def decrypted_indices
+    shifted_message_indices_decrypt.map do |index|
+      index % 27
+    end
+  end
+
+  def decrypted_characters
+    collector = []
+    decrypted_indices.each do |number|
+      character_set_hash.each do |character, index|
+        if index == number
+          collector << character
+        end
+      end
+    end
+    collector
+  end
+
+def decrypted_message
+  decrypted_characters.join("")
+end
+
+
+
 
 end
