@@ -84,6 +84,8 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/enigma'
+require 'simplecov'
+SimpleCov.start
 
 class EnigmaTest < Minitest::Test
 
@@ -203,7 +205,6 @@ class EnigmaTest < Minitest::Test
 
   def test_encrypt_no_given_key
     enigma = Enigma.new
-    require "pry"; binding.pry
   end
 
 end
