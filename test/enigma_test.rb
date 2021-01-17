@@ -80,12 +80,11 @@
 #     assert_equal expected, enigma.encrypted_message
 #   end
 ###########################################################################
-
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/enigma'
-require 'simplecov'
-SimpleCov.start
 
 class EnigmaTest < Minitest::Test
 
