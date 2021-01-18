@@ -16,10 +16,10 @@ class CipherTest < Minitest::Test
     cipher = Cipher.new('12487', '120395')
     assert_equal 12487, cipher.key_to_integer
     assert_equal 120395, cipher.date_to_integer
-    assert_nil cipher.a_shift
-    assert_nil cipher.b_shift
-    assert_nil cipher.c_shift
-    assert_nil cipher.d_shift
+    assert_equal 18, cipher.a_shift
+    assert_equal 24, cipher.b_shift
+    assert_equal 50, cipher.c_shift
+    assert_equal 92, cipher.d_shift
   end
 
   def test_keys
@@ -37,6 +37,14 @@ class CipherTest < Minitest::Test
     assert_equal 0, cipher.b_offset
     assert_equal 2, cipher.c_offset
     assert_equal 5, cipher.d_offset
+  end
+
+  def test_shifts
+    cipher = Cipher.new('12487', '120395')
+    assert_equal 18, cipher.a_shift
+    assert_equal 24, cipher.b_shift
+    assert_equal 50, cipher.c_shift
+    assert_equal 92, cipher.d_shift
   end
 
 end

@@ -9,10 +9,10 @@ class Cipher
   def initialize(key_string, date_string)
     @key_to_integer = key_string.to_i
     @date_to_integer = date_string.to_i
-    @a_shift = nil
-    @b_shift = nil
-    @c_shift = nil
-    @d_shift = nil
+    @a_shift = a_shift
+    @b_shift = b_shift
+    @c_shift = c_shift
+    @d_shift = d_shift
   end
 
   def a_key
@@ -49,6 +49,22 @@ class Cipher
 
   def d_offset
     date_squared.digits.reverse[-1]
+  end
+
+  def a_shift
+    a_key + a_offset
+  end
+
+  def b_shift
+    b_key + b_offset
+  end
+
+  def c_shift
+    c_key + c_offset
+  end
+
+  def d_shift
+    d_key + d_offset
   end
 
 end
