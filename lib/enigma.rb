@@ -11,6 +11,12 @@ class Enigma
     @encryption_output = {encryption: encrypted_message, key: key, date: date}
   end
 
+  def decrypt(ciphertext, key, date = Time.now.strftime("%d%m%y"))
+    @cipher = Cipher.new(key, date)
+    @message = ciphertext
+    encryption_output = {decryption: decrypted_message, key: key, date: date}
+  end
+
   def split_message
     @message.split("")
   end
@@ -105,12 +111,6 @@ class Enigma
 
   def encrypted_message
     encrypted_characters.join("")
-  end
-
-  def decrypt(ciphertext, key, date = Time.now.strftime("%d%m%y"))
-    @cipher = Cipher.new(key, date)
-    @message = ciphertext
-    encryption_output = {decryption: decrypted_message, key: key, date: date}
   end
 
   def a_shift_decrypt
