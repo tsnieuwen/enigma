@@ -1,4 +1,7 @@
 require './lib/enigma'
+require './lib/decrypter'
+require './lib/cipher'
+require './lib/cryptable'
 
 enigma = Enigma.new
 
