@@ -1,4 +1,3 @@
-
 class Enigma
   attr_reader :character_set
 
@@ -9,7 +8,7 @@ class Enigma
   def encrypt(message, key = ((0..99999).to_a.sample).to_s.rjust(5, "0"), date = ((Time.now.to_s.split("")[8..9]) + (Time.now.to_s.split("")[5..6]) + (Time.now.to_s.split("")[2..3])).join(""))
     @key_to_integer = key.to_i
     @date = date.to_i
-    @message = message
+    @message = message.downcase
     @encryption_output = {encryption: encrypted_message, key: key, date: date}
   end
 
