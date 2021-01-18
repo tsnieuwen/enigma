@@ -3,10 +3,10 @@ class Decrypter
               :cipher,
               :message
 
-  def initialize(message, key = ((0..99999).to_a.sample).to_s.rjust(5, "0"), date = Time.now.strftime("%d%m%y"))
+  def initialize(ciphertext, key = ((0..99999).to_a.sample).to_s.rjust(5, "0"), date = Time.now.strftime("%d%m%y"))
     @character_set = ("a".."z").to_a << " "
     @cipher = Cipher.new(key, date)
-    @message = message.downcase
+    @message = ciphertext.downcase
   end
 
   def split_message
