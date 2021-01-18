@@ -4,9 +4,7 @@ enigma = Enigma.new
 
 handle = File.open(ARGV[0], "r")
 normal_message = (handle.read).chomp
-key = ARGV[2]
-date = ARGV[3]
-decrypted_hash = enigma.decrypt(normal_message, key, date)
+decrypted_hash = enigma.decrypt(normal_message, ARGV[2], ARGV[3])
 
 writer = File.open(ARGV[1], "w")
 writer.write(decrypted_hash[:decryption])
