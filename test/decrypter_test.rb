@@ -4,6 +4,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/decrypter'
 require './lib/cipher'
+require './lib/cryptable'
 
 class DecrypterTest < Minitest::Test
 
