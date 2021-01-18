@@ -1,3 +1,4 @@
+require 'date'
 class Enigma
   attr_reader :character_set
 
@@ -5,7 +6,7 @@ class Enigma
     @character_set = ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key = ((0..99999).to_a.sample).to_s.rjust(5, "0"), date = ((Time.now.to_s.split("")[8..9]) + (Time.now.to_s.split("")[5..6]) + (Time.now.to_s.split("")[2..3])).join(""))
+  def encrypt(message, key = ((0..99999).to_a.sample).to_s.rjust(5, "0"), date = Time.now.strftime("%d%m%y"))
     @key_to_integer = key.to_i
     @date = date.to_i
     @message = message.downcase
@@ -217,11 +218,8 @@ class Enigma
     collector
   end
 
-def decrypted_message
-  decrypted_characters.join("")
-end
-
-
-
+  def decrypted_message
+    decrypted_characters.join("")
+  end
 
 end
