@@ -1,9 +1,11 @@
-require 'simplecov'
-SimpleCov.start
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/enigma'
-require './lib/cipher'
+# require 'simplecov'
+# SimpleCov.start
+# require 'minitest/autorun'
+# require 'minitest/pride'
+# require './lib/enigma'
+# require './lib/cipher'
+
+require './test/test_helper'
 
 class CipherTest < Minitest::Test
 
