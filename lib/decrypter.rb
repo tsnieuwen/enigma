@@ -1,4 +1,4 @@
-class Encrypter
+class Decrypter
   attr_reader :character_set,
               :cipher,
               :message
@@ -67,31 +67,47 @@ class Encrypter
     x
   end
 
-  def shifted_message_indices_encrypt
+  def a_shift_decrypt
+    27 - (@cipher.a_shift % 27)
+  end
+
+  def b_shift_decrypt
+    27 - (@cipher.b_shift % 27)
+  end
+
+  def c_shift_decrypt
+    27 - (@cipher.c_shift % 27)
+  end
+
+  def d_shift_decrypt
+    27 - (@cipher.d_shift % 27)
+  end
+
+  def shifted_message_indices_decrypt
     i = -1
     message_index.map do |element|
       i += 1
       if a_shift_indices.include?(i)
-        element + @cipher.a_shift
+        element + a_shift_decrypt
       elsif b_shift_indices.include?(i)
-        element + @cipher.b_shift
+        element + b_shift_decrypt
       elsif c_shift_indices.include?(i)
-        element + @cipher.c_shift
+        element + c_shift_decrypt
       elsif d_shift_indices.include?(i)
-        element + @cipher.d_shift
+        element + d_shift_decrypt
       end
     end
   end
 
-  def encrypted_indices
-    shifted_message_indices_encrypt.map do |index|
+  def decrypted_indices
+    shifted_message_indices_decrypt.map do |index|
       index % 27
     end
   end
 
-  def encrypted_characters
+  def decrypted_characters
     collector = []
-    encrypted_indices.each do |number|
+    decrypted_indices.each do |number|
       character_set_hash.each do |character, index|
         if index == number
           collector << character
@@ -101,8 +117,8 @@ class Encrypter
     collector
   end
 
-  def encrypted_message
-    encrypted_characters.join("")
+  def decrypted_message
+    decrypted_characters.join("")
   end
 
 end
