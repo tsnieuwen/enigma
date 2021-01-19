@@ -6,7 +6,6 @@ require './lib/encrypter'
 require './lib/cipher'
 require './lib/cryptable'
 
-
 class EncrypterTest < Minitest::Test
 
   def test_it_exists

@@ -8,7 +8,6 @@ require './lib/decrypter'
 require './lib/cipher'
 require './lib/cryptable'
 
-
 class EnigmaTest < Minitest::Test
 
   def test_it_exists
