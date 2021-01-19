@@ -1,4 +1,4 @@
-# enigma
+# Enigma
 
 ## Functionality
 - 3 for functionality. The `enigma` class decrypts and encrypts successfully and the CLI is successfully implemented. The cracking method wasn't even attempted.
@@ -13,4 +13,4 @@
 - 3 for TDD. All my tests are at 100% coverage but I did not do any mocks or stubs.
 
 ## Version Control
-- My version control would be a pass - I have well over 30 commits along with several branches. 
+- My version control would be a pass - I have well over 30 commits along with several branches.
