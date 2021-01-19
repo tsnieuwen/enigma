@@ -1,12 +1,14 @@
 # require 'simplecov'
 # SimpleCov.start
-# require 'minitest/autorun'
-# require 'minitest/pride'
-# require './lib/enigma'
-# require './lib/encrypter'
-# require './lib/decrypter'
-# require './lib/cipher'
 require './test/test_helper'
+require 'minitest/autorun'
+require 'minitest/pride'
+require './lib/enigma'
+require './lib/encrypter'
+require './lib/decrypter'
+require './lib/cipher'
+require './lib/cryptable'
+
 
 class EnigmaTest < Minitest::Test
 
@@ -17,8 +19,10 @@ class EnigmaTest < Minitest::Test
 
   def test_it_has_readable_attributes
     enigma = Enigma.new
-    expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
-    assert_equal expected, enigma.character_set
+    enigma.encrypt("my name is tommy", "12487", "120395")
+    enigma.decrypt("dvwysjak pwdfjii", "12487", "120395")
+    assert_instance_of Encrypter, enigma.encrypter
+    assert_instance_of Decrypter, enigma.decrypter
   end
 
   def test_encrypt
