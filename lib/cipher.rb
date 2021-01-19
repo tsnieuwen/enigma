@@ -1,5 +1,5 @@
 class Cipher
-  attr_reader :key_to_integer,
+  attr_reader :five_digit_key_array,
               :date_to_integer,
               :a_shift,
               :b_shift,
@@ -7,7 +7,7 @@ class Cipher
               :d_shift
 
   def initialize(key_string, date_string)
-    @key_to_integer = key_string.to_i
+    @five_digit_key_array = (key_string.rjust(5, "0")).split("")
     @date_to_integer = date_string.to_i
     @a_shift = a_shift
     @b_shift = b_shift
@@ -16,19 +16,19 @@ class Cipher
   end
 
   def a_key
-    (@key_to_integer.digits.reverse[0].to_s + @key_to_integer.digits.reverse[1].to_s).to_i
+    (@five_digit_key_array[0] + @five_digit_key_array[1]).to_i
   end
 
   def b_key
-    (@key_to_integer.digits.reverse[1].to_s + @key_to_integer.digits.reverse[2].to_s).to_i
+    (@five_digit_key_array[1] + @five_digit_key_array[2]).to_i
   end
 
   def c_key
-    (@key_to_integer.digits.reverse[2].to_s + @key_to_integer.digits.reverse[3].to_s).to_i
+    (@five_digit_key_array[2] + @five_digit_key_array[3]).to_i
   end
 
   def d_key
-    (@key_to_integer.digits.reverse[3].to_s + @key_to_integer.digits.reverse[4].to_s).to_i
+    (@five_digit_key_array[3] + @five_digit_key_array[4]).to_i
   end
 
   def date_squared

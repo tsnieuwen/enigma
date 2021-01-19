@@ -1,12 +1,11 @@
 # require 'simplecov'
 # SimpleCov.start
-# require 'minitest/autorun'
-# require 'minitest/pride'
-# require './lib/decrypter'
-# require './lib/cipher'
-# require './lib/cryptable'
-
 require './test/test_helper'
+require 'minitest/autorun'
+require 'minitest/pride'
+require './lib/decrypter'
+require './lib/cipher'
+require './lib/cryptable'
 
 class DecrypterTest < Minitest::Test
 
